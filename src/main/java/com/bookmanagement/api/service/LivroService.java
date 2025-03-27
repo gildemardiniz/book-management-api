@@ -1,12 +1,10 @@
 package com.bookmanagement.api.service;
 
-import com.bookmanagement.api.dto.LivroRecordDto;
 import com.bookmanagement.api.model.LivroModel;
 import com.bookmanagement.api.repository.LivroRepository;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,21 +27,21 @@ public class LivroService {
         return livroRepository.findById(id);
     }
 
-    public Object deleteById(@NotNull Long id) {
+    public Object update(Long id, LivroModel livroModel) {
         var retorno = this.findById(id);
         if (retorno.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro: O ID informado não foi encontrado. Por favor, verifique e tente novamente.");
-        }else{
-            livroRepository.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Sucesso: O item foi deletado com sucesso.");
+            throw new ObjectNotFoundException(id,"Erro: O ID informado não foi encontrado. Por favor, verifique e tente novamente.");
         }
+            livroModel.setIdLivro(id);
+            return livroRepository.save(livroModel);
     }
 
-    public Object update(LivroModel livroModel) {
-        var retorno = this.findById(livroModel.getIdLivro());
+    public void deleteById(@NotNull Long id) {
+        var retorno = this.findById(id);
         if (retorno.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro: O ID informado não foi encontrado. Por favor, verifique e tente novamente.");
+            throw new ObjectNotFoundException(id,"Erro: O ID informado não foi encontrado. Por favor, verifique e tente novamente.");
+        }else{
+            livroRepository.deleteById(id);
         }
-            return livroRepository.save(livroModel);
     }
 }
