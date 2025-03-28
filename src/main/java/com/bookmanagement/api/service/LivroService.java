@@ -1,5 +1,6 @@
 package com.bookmanagement.api.service;
 
+import com.bookmanagement.api.dto.LivroRecordDto;
 import com.bookmanagement.api.model.LivroModel;
 import com.bookmanagement.api.repository.LivroRepository;
 import jakarta.validation.constraints.NotNull;
@@ -27,13 +28,14 @@ public class LivroService {
         return livroRepository.findById(id);
     }
 
-    public Object update(Long id, LivroModel livroModel) {
+    public Object update(Long id, LivroRecordDto livroRecordDto) {
         var retorno = this.findById(id);
         if (retorno.isEmpty()) {
             throw new ObjectNotFoundException(id,"Erro: O ID informado não foi encontrado. Por favor, verifique e tente novamente.");
         }
-            livroModel.setIdLivro(id);
-            return livroRepository.save(livroModel);
+        LivroModel livroModel = new LivroModel(livroRecordDto);
+        livroModel.setIdLivro(id);
+        return livroRepository.save(livroModel);
     }
 
     public void deleteById(@NotNull Long id) {
