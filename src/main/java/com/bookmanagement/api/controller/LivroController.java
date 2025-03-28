@@ -45,8 +45,7 @@ public class LivroController {
     @Operation(summary = "Atualiza um livro existente no sistema com base no ID fornecido, permitindo a modificação de seus dados.", method = "PUT")
     public ResponseEntity<Object> update( @PathVariable Long id, @Valid @RequestBody LivroRecordDto livroRecordDto) {
         try{
-            LivroModel livroModel = new LivroModel(livroRecordDto);
-            return ResponseEntity.status(HttpStatus.OK).body(livroService.update(id, livroModel));
+            return ResponseEntity.status(HttpStatus.OK).body(livroService.update(id, livroRecordDto));
         }catch (ObjectNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getEntityName());
         }catch (Exception e){
