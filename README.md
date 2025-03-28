@@ -1,6 +1,6 @@
 # API de Gerenciamento de Livros
 
-Esta é uma API REST desenvolvida com **Spring Boot** para gerenciamento de livros. A API permite realizar operações de CRUD (criação, leitura, atualização e exclusão) para gerenciar livros em um banco de dados H2.
+API REST simples para gerenciamento de livros, implementada com Spring Boot. Permite realizar operações de CRUD (criação, leitura, atualização e exclusão) de livros, com persistência em banco de dados H2 e testes básicos para validação das rotas(Teste NTConsult)
 
 ## Funcionalidades da API
 
