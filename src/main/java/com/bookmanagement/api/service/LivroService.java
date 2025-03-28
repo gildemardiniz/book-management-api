@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class LivroService {
     @Autowired
-    LivroRepository livroRepository;
+    private LivroRepository livroRepository;
 
     public Object save(LivroModel livroModel) {
         return livroRepository.save(livroModel);

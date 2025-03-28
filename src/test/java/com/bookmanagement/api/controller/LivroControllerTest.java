@@ -20,19 +20,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class LivroControllerTest {
 
     @InjectMocks
-    LivroController livroController;
+    private LivroController livroController;
 
     @Mock
-    LivroService livroService;
+    private LivroService livroService;
 
-    LivroModel livroTeste = new LivroModel(
+    private final LivroModel livroTeste = new LivroModel(
             1L,
             "As crônicas de Nárnia - O leão, a feiticeira e o guarda-roupa",
             "C. S. Lewis",
             1950
     );
 
-    LivroRecordDto livroRecordDtoTest = new LivroRecordDto(
+    private final LivroRecordDto livroRecordDtoTest = new LivroRecordDto(
             "As crônicas de Nárnia - O leão, a feiticeira e o guarda-roupa",
             "C. S. Lewis",
             1950

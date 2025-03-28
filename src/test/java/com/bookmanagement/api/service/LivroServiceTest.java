@@ -25,13 +25,13 @@ class LivroServiceTest {
     @Mock
     private LivroRepository livroRepository;
 
-    LivroModel livroTest = new LivroModel(
+    private final LivroModel livroTest = new LivroModel(
             1L,
             "Harry Potter e a Pedra Filosofal",
             "J.K. Rowling",
             1997
     );
-    LivroRecordDto livroRecordDtoTest = new LivroRecordDto(
+    private final LivroRecordDto livroRecordDtoTest = new LivroRecordDto(
             "Harry Potter e a Pedra Filosofal",
             "J.K. Rowling",
             1997
